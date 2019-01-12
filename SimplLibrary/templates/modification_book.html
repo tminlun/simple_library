@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+
+{% block title_extends %}修改图书{% endblock %}
+
+{% block style_extends %}
+    <style>
+        .addbook{
+            margin-top: 10%;
+            margin-right: 50%;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <a href="{{ previous_html }}">
+        <button type="button" class="btn btn-primary">返回</button><br/>
+    </a>
+    <a href="{% url 'index' %}" style="position: relative;left: 20em;">
+        <button type="button" class="btn btn-primary">首页</button><br/>
+    </a>
+    <br>
+    <div class="addbook">
+
+        <form class="form-horizontal" action="{% url 'modification_book' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ book_detail.id }}" name="id">
+            <div class="form-group">
+                <label for="title" class="col-sm-2 control-label">名字</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="title" placeholder="title" name="name" value="{{ book_detail.name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="price" class="col-sm-2 control-label">价格</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="price" required placeholder="price" name="price" value="{{ book_detail.price }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="author" class="col-sm-2 control-label">作者</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="author" placeholder="author" name="author" value="{{ book_detail.author }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="publish" class="col-sm-2 control-label">出版社</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="publish" required placeholder="publish" name="publish" value="{{ book_detail.publish }}">
+                </div>
+            </div>
+            <div class="form-group">
+                <p style="color: #f40;list-style: none;">
+                    {% for k,error in book_from.errors.items  %}
+                        {{ error }}
+                    {% endfor %}
+                    {{ msg }}
+                </p>
+            </div>
+            {#    <div class="form-group">#}
+            {#        <div class="col-sm-offset-2 col-sm-10">#}
+            {#            <div class="checkbox">#}
+            {#                <label>#}
+            {#                    <input type="checkbox"> Remember me#}
+            {#                </label>#}
+            {#            </div>#}
+            {#        </div>#}
+            {#    </div>#}
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
