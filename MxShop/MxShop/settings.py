@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'user_operation.apps.UserOperationConfig',
     'trade.apps.TradeConfig',
     'goods.apps.GoodsConfig',
+    'rest_framework',
 ]
 
 #  让UserProfile覆盖User
@@ -147,3 +148,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'# 上传图片的路径，上传的图片会自动传递给media目录
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#让django识别media是存放文件的
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # 开启分页
+#     'PAGE_SIZE': 10,  # 每页显示商品的个数
+# }

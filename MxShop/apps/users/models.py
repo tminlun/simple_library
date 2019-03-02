@@ -17,7 +17,10 @@ class UserProfile(AbstractUser):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return self.username  # 父类AbstractUser原本的属性
 
 
 class VerifyCode(models.Model):
