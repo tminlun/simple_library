@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32906c72-3030-4a68-86a8-b9171f8ebf67" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/apps/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_tools/import_goods_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/db_tools/import_goods_data.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../SimplLibrary/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SimplLibrary/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,11 +33,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/goods/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
+            <state relative-caret-position="217">
+              <caret line="27" column="60" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="60" />
               <folding>
                 <element signature="e#0#63#0" expanded="true" />
                 <element signature="e#422#640#0" />
@@ -79,7 +76,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/MxShop/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="92">
@@ -433,15 +430,15 @@
       <workItem from="1551251779926" duration="14618000" />
       <workItem from="1551359335780" duration="837000" />
       <workItem from="1551431421770" duration="10000000" />
-      <workItem from="1551507049484" duration="12726000" />
+      <workItem from="1551507049484" duration="13247000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63712000" />
+    <option name="totallyTimeSpent" value="64233000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6588983" weight="0.18766756" />
@@ -865,17 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/goods/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#63#0" expanded="true" />
-            <element signature="e#422#640#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/PycharmProjects/DjangoRESTFrameworkVue/Lib/site-packages/rest_framework/routers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="892">
@@ -889,6 +875,17 @@
           <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
           <folding>
             <element signature="e#665#678#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/goods/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="27" column="60" selection-start-line="27" selection-start-column="46" selection-end-line="27" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#63#0" expanded="true" />
+            <element signature="e#422#640#0" />
           </folding>
         </state>
       </provider>
