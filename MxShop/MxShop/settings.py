@@ -27,7 +27,7 @@ SECRET_KEY = 'u=1yu)g##pm_$)$&2!@gy538a0vof4yqguw7dmr2x)xuu$$!lh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -46,12 +46,16 @@ INSTALLED_APPS = [
     'trade.apps.TradeConfig',
     'goods.apps.GoodsConfig',
     'rest_framework',
+    'django_filters',
+    'coreschema',  # 跨URL资源共享（前后端共享）
+
 ]
 
 #  让UserProfile覆盖User
 AUTH_USER_MODEL = 'users.UserProfile'
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # 跨URL资源共享必须加
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -60,7 +64,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True  # 添加允许执行跨站点请求
 ROOT_URLCONF = 'MxShop.urls'
 
 TEMPLATES = [

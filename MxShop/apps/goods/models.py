@@ -74,6 +74,13 @@ class Goods(models.Model):
     is_hot = models.BooleanField("是否热销", default=False)
     add_time = models.DateTimeField("添加时间", default=datetime.now)
 
+    def goods_descs(self):
+        ''' 限制内容的长度 '''
+        if len(str(self.goods_desc)) > 65:
+            return '{}...'.format(str(self.goods_desc)[:65])
+        else:
+            return str(self.goods_desc)
+
     class Meta:
         verbose_name = '商品信息'
         verbose_name_plural = verbose_name

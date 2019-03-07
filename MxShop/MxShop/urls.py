@@ -19,14 +19,14 @@ from django.urls import path, include, re_path
 from django.conf import settings #上传图片
 from django.conf.urls.static import static #上传图片
 from rest_framework.documentation import include_docs_urls
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet, CategoryViewSet
 from rest_framework.routers import DefaultRouter
 
 
 router = DefaultRouter()  # 自动添加get、post、patch方法
 # 配置goods的url
-router.register('goods', GoodsListViewSet)
-
+router.register('goods', GoodsListViewSet,base_name='goods')  # 商品列表（坑：必须添加 base_name）
+router.register('categorys', CategoryViewSet,base_name='categorys')  # 商品分类
 
 urlpatterns = [
     path('xadmin/', xadmin.site.urls),
