@@ -47,12 +47,18 @@ INSTALLED_APPS = [
     'goods.apps.GoodsConfig',
     'rest_framework',
     'django_filters',
-    'coreschema',  # 跨URL资源共享（前后端共享）
+    'coreschema',  # 跨URL资源共享（前后端接口）
+    'rest_framework.authtoken',  # TokenAuthentication身份验证方案
 
 ]
 
 #  让UserProfile覆盖User
 AUTH_USER_MODEL = 'users.UserProfile'
+
+# 重载authentication，使得手机号码可以登录。 jwt接口它默认采用的是用户名和密码登录验证，所以要自定义一个用户验证
+AUTHENTICATION_BACKENDS = {
+    'users.views.CustomBackend',
+}
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # 跨URL资源共享必须加
@@ -101,8 +107,9 @@ DATABASES = {
         'PASSWORD': 'root',    #密码
         'HOST': '127.0.0.1',     #IP
         'PORT': '3306',          #端口
-        #这里引擎用innodb（默认myisam）
-        #因为后面第三方登录时，要求引擎为INNODB
+
+        # 这里引擎用innodb（默认myisam）
+        # 因为后面第三方登录时，要求引擎为INNODB
         # 'OPTIONS':{'init_command': 'SET storage_engine=INNODB'}, #这样设置会报错，改为
         "OPTIONS":{"init_command":"SET default_storage_engine=INNODB;"}
     }
@@ -139,7 +146,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = False   #默认是Ture，时间是utc时间，由于我们要用本地时间，所用手动修改为false！！！！
+USE_TZ = False  # 默认是Ture，时间是utc时间，由于我们要用本地时间，所用手动修改为false！！！！
 
 
 # Static files (CSS, JavaScript, Images)
@@ -157,3 +164,30 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#让django识别media是存放文件
 #     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',  # 开启分页
 #     'PAGE_SIZE': 10,  # 每页显示商品的个数
 # }
+
+
+# 验证用户登录信息
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',  # HTTP基本身份验证
+        # 默认后端进行验证：CSRF令牌
+        'rest_framework.authentication.SessionAuthentication',
+
+        # 如果使用全局的TokenAuthentication，在用户登录失败或者输入过期验证码的时候，访问不了所有的页面。所以要单独接口验证登录
+        # 'rest_framework.authentication.TokenAuthentication',  # 永久存储数据库，不能单点登录
+
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',  # 不用存储tok，单点登录，可以进行加密（通过加密储存在浏览器，再通过解密得到信息）
+
+    )
+}
+import datetime
+JWT_AUTH = {
+    'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),  # 设置jwt码过期时间
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',  # 令牌密钥（Authorization）标头值，需和前端一致
+}
+
+# 手机号码正则表达式
+REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
+
+# 云片网的 apikey
+APIKEY = '828bb1c73cae18e05c184969679cbd3e'

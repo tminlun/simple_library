@@ -1,12 +1,14 @@
 from datetime import datetime
 from django.db import models
-from users.models import UserProfile
+from django.contrib.auth import get_user_model
 from goods.models import Goods
+
+User = get_user_model()
 # Create your models here.
 
 
 class GoodsFav(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="用户")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="用户")
     goods = models.ForeignKey(Goods, on_delete=models.CASCADE, verbose_name="商品",help_text="商品id")
     add_time = models.DateTimeField(default=datetime.now,verbose_name="添加时间")
 
@@ -21,7 +23,7 @@ class GoodsFav(models.Model):
 
 
 class UserAddress(models.Model):
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="用户")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="用户")
     province = models.CharField(max_length=10,default="",verbose_name="省份")
     city = models.CharField(max_length=10,default="",verbose_name="城市")
     district = models.CharField(max_length=100,default="",verbose_name="区域")
@@ -46,7 +48,7 @@ class UserLeavingMessage(models.Model):
         (4, "售后"),
         (5, "求购")
     )
-    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, verbose_name="用户")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="用户")
     message_type = models.CharField(max_length=30,choices=MESSAGE_CHOICES,default=1,verbose_name="留言类型")
     subject = models.CharField(max_length=100,default="",verbose_name="主题")
     message = models.TextField(default="",verbose_name="留言内容",help_text="留言内容")

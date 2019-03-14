@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import GenericViewSet
 from rest_framework import filters  # 搜索
+from rest_framework.authentication import TokenAuthentication
 from django_filters.rest_framework import DjangoFilterBackend  # 过滤
 from goods.serializers import GoodsSerializer, GoodsCategorySerializer  # 和Django的forms、modelsforms功能一样
 from .models import Goods, GoodsCategory
@@ -26,13 +27,16 @@ class GoodsPagination(PageNumberPagination):
     max_page_size = 100
 
 
-class GoodsListViewSet(mixins.ListModelMixin, GenericViewSet):
+class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
     '''
+    View就是接口
     商品列表,这里可以在drf显示哦；GenericViewSet：自动生成get方法
+    RetrieveModelMixin: 就可以返回商品详情页（但是serializer要改变，因为goods有个image轮播图）
     '''
-    queryset = Goods.objects.all().order_by('id')  # queryset: 用于返回query对象集合
+    queryset = Goods.objects.all().order_by('-id')  # model就行系列化，转换为json，返回给用户（api接口）
+    serializer_class = GoodsSerializer  # get()：系列化（加工）
     pagination_class = GoodsPagination  # 实现分页
-    serializer_class = GoodsSerializer  # get()：系列化
+
     # 只需要简单的过滤、搜索、排序，只需要在此（filter_backends）添加属性
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     #  过滤类

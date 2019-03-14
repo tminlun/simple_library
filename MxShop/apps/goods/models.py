@@ -93,6 +93,7 @@ class GoodsImage(models.Model):
     """
     商品图片（1（食物）对 多（图片）），就要用外键
     """
+    # related_name：通过related_name把所有对应图片传递给goods
     goods = models.ForeignKey(Goods,on_delete=models.CASCADE,related_name="goods_banner",verbose_name="商品")
     image = models.ImageField(upload_to="goods/images/",max_length=200,null=True,blank=True,verbose_name="图片")
     add_time = models.DateTimeField("添加时间", default=datetime.now)

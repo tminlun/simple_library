@@ -1,7 +1,9 @@
 # _*_ encoding:utf-8 _*_
 __author__: '田敏伦'
 __date__: '2019/3/1 0001 17:12'
-
+"""
+测试，django和drf作比较
+"""
 
 from django.views.generic.base import View
 from django.views.generic import ListView
